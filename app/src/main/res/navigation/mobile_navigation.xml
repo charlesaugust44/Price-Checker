@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_product_list">
+
+    <fragment
+        android:id="@+id/nav_product_list"
+        android:name="com.charlesaugust44.pricechecker.ProductFragment"
+        android:label="@string/menu_products"
+        tools:layout="@layout/fragment_product" />
+
+    <fragment
+        android:id="@+id/nav_invoice_list"
+        android:name="com.charlesaugust44.pricechecker.InvoiceFragment"
+        android:label="@string/menu_invoices"
+        tools:layout="@layout/fragment_invoice" >
+        <action
+            android:id="@+id/action_nav_invoice_list_to_nav_invoice_detail"
+            app:destination="@id/nav_invoice_detail" />
+        <action
+            android:id="@+id/action_nav_invoice_list_to_nav_webview"
+            app:destination="@id/nav_webview" />
+        <argument
+            android:name="json"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_invoice_detail"
+        android:name="com.charlesaugust44.pricechecker.InvoiceDetailFragment"
+        android:label="@string/invoice_details"
+        tools:layout="@layout/fragment_invoice_detail" >
+        <argument
+            android:name="key"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_webview"
+        android:name="com.charlesaugust44.pricechecker.WebviewFragment"
+        android:label="Import Invoice"
+        tools:layout="@layout/fragment_webview" >
+        <action
+            android:id="@+id/action_nav_webview_to_nav_invoice_list"
+            app:destination="@id/nav_invoice_list" />
+        <argument android:name="key"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
